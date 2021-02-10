@@ -279,6 +279,8 @@ class TDStreamer {
      * @returns {object[]} The request objects sent to the server
      */
     subsAccountActivity(fields) {
+        debug('streamerSubscriptionKeys %j', this.userPrincipals.streamerSubscriptionKeys)
+        debug('using key %j', this.userPrincipals.streamerSubscriptionKeys.keys[0].key)
         return this.subscribe({
             service: SERVICES.ACCT_ACTIVITY,
             parameters: {
@@ -614,6 +616,7 @@ class TDStreamer {
      * @returns {object[]} object
      */
     subsLevelOneEquity(symbols, fields) {
+        debug('subsLevelOneEquity %j', symbols)
         return this.subscribe({
             service: SERVICES.QUOTE,
             parameters: {
