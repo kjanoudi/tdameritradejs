@@ -7,6 +7,7 @@ const defaults = require('./config')
 const token = require('./resources/token')
 const EventEmitter = require('eventemitter3')
 const interceptors = require('./interceptors')
+const rateLimit = require('axios-rate-limit')
 const apiKeySuffix = '@AMER.OAUTHAP'
 
 function http(config = {}) {
@@ -35,8 +36,8 @@ function http(config = {}) {
     this.getAccessToken = token.getAccessToken
     this.refreshAccessToken = token.refreshAccessToken
 
-    this.axios = axios.create({ baseURL: this.config.baseURL })
-
+    const instance = axios.create({ baseURL: this.config.baseURL })
+    this.axios = rateLimit(instance, { maxRequests: 1, perMilliseconds: 1000 })
     interceptors.setup(this)
 } // http()
 
