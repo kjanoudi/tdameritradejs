@@ -14,6 +14,7 @@ function http(config = {}) {
     this._emitter = new EventEmitter()
 
     this.on = (event, fn) => this._emitter.on(event, fn)
+    this.removeAllListeners = (event) => this._emitter.removeAllListeners(event)
 
     this.config = Object.assign({}, defaults, config, {
         apiKey: (config.apiKey + '').endsWith(apiKeySuffix)
