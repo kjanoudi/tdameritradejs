@@ -38,7 +38,7 @@ function http(config = {}) {
     this.refreshAccessToken = token.refreshAccessToken
 
     const instance = axios.create({ baseURL: this.config.baseURL })
-    this.axios = rateLimit(instance, { maxRequests: 1, perMilliseconds: 1000 })
+    this.axios = rateLimit(instance, this.config.rateLimit)
     interceptors.setup(this)
 } // http()
 
