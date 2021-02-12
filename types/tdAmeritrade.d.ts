@@ -14,6 +14,7 @@ export class TDAmeritrade {
     axios: AxiosInstance
 
     on(eventName:'login'|'token', fn): void
+    removeAllListeners(eventName:'login'|'token'): void
     authorize(): Promise<any>
     login(): Promise<any>
 
